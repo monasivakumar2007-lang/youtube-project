@@ -1,0 +1,340 @@
+// ============================================================
+// prisma/schema.prisma
+// Video Streaming & Social Platform — Database Schema
+// Phase 1 Foundation
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// ENUMS
+// ============================================================
+
+/// The subscription plan tier for a user.
+enum PlanType {
+  FREE
+  BRONZE
+  SILVER
+  GOLD
+}
+
+/// The system role of a user — controls access level.
+enum Role {
+  USER
+  ADMIN
+}
+
+/// User's preferred colour theme for the application UI.
+enum ThemePreference {
+  AUTO   // Automatically switches between LIGHT and DARK based on time of day (IST)
+  LIGHT
+  DARK
+}
+
+/// The lifecycle state of a Razorpay payment.
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+/// The moderation lifecycle of a comment report.
+enum ReportStatus {
+  NONE           // No report filed
+  PENDING_REVIEW // Reported — awaiting admin action
+  REVIEWED       // Admin has looked at the report
+  RESOLVED       // Admin has taken a final action
+}
+
+/// The state of a Watch Party recording session.
+enum RecordingStatus {
+  IDLE        // No recording in progress
+  RECORDING   // Actively recording
+  COMPLETED   // Recording finished and saved
+}
+
+/// The lifecycle processing status of a video.
+enum VideoStatus {
+  PROCESSING
+  READY
+  FAILED
+}
+
+
+// ============================================================
+// MODELS
+// ============================================================
+
+// ------------------------------------------------------------
+// User
+// Core identity entity. Owns most other records in the system.
+// ------------------------------------------------------------
+model User {
+  id              String          @id @default(cuid())
+  name            String
+  email           String          @unique
+  phone           String?         @unique
+  password        String          // bcrypt hashed — never plain text
+  role            Role            @default(USER)
+  planType        PlanType        @default(FREE)
+  themePreference ThemePreference @default(AUTO)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  loginHistories  LoginHistory[]
+  otpRecords      OTPVerification[]
+  downloads       Download[]
+  subscriptions   Subscription[]
+  comments        Comment[]
+  commentReports  CommentReport[]
+  hostedParties   WatchParty[]          @relation("WatchPartyHost")
+  partyMemberships WatchPartyParticipant[]
+  videos          Video[]
+
+  @@index([email])
+  @@index([role])
+  @@index([planType])
+  @@map("users")
+}
+
+// ------------------------------------------------------------
+// LoginHistory
+// Records every login event with device and location metadata.
+// Used to detect suspicious/new logins that require OTP.
+// ------------------------------------------------------------
+model LoginHistory {
+  id          String   @id @default(cuid())
+  userId      String
+  cityRegion  String?  // Broad region only — never expose exact location publicly
+  state       String?  // State / province
+  deviceId    String   // Derived from user-agent fingerprint or device token
+  ipAddress   String   // Stored for audit; not exposed to other users
+  userAgent   String
+  verified    Boolean  @default(false) // true once OTP was passed for this session
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, deviceId])  // Fast lookup for "have we seen this device before?"
+  @@index([userId, state])     // Fast lookup for "have we seen this location before?"
+  @@map("login_histories")
+}
+
+// ------------------------------------------------------------
+// OTPVerification
+// Stores hashed OTP challenges for device/location verification.
+// OTPs must NEVER be stored as plain text.
+// ------------------------------------------------------------
+model OTPVerification {
+  id        String   @id @default(cuid())
+  userId    String
+  otpHash   String   // bcrypt / argon2 hash of the OTP
+  expiresAt DateTime
+  attempts  Int      @default(0) // Increment on each wrong attempt; block after max
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, verified])
+  @@map("otp_verifications")
+}
+
+// ------------------------------------------------------------
+// Video
+// The central content entity. All social/streaming features
+// revolve around videos.
+// ------------------------------------------------------------
+model Video {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  thumbnailUrl String
+  videoUrl     String
+  duration     Int      // Duration in seconds
+  category     String
+  views        Int      @default(0)
+  isPublished  Boolean  @default(true)
+  status       VideoStatus @default(READY)
+  uploadedById String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  uploadedBy   User?    @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+  downloads    Download[]
+  comments     Comment[]
+  watchParties WatchParty[]
+
+  @@index([category])
+  @@index([views])      // For recommendation / trending queries
+  @@index([createdAt])  // For "latest" queries
+  @@index([uploadedById])
+  @@map("videos")
+}
+
+// ------------------------------------------------------------
+// Download
+// Records every download event tied to a user and video.
+// Used to enforce plan-based daily download limits:
+//   FREE   → 1  per 24 h
+//   BRONZE → 5  per 24 h
+//   SILVER → 15 per 24 h
+//   GOLD   → unlimited
+// Download limit middleware will be added in a later phase.
+// ------------------------------------------------------------
+model Download {
+  id           String   @id @default(cuid())
+  userId       String
+  videoId      String
+  planType     PlanType // Snapshot of the user's plan at download time
+  downloadedAt DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  video        Video    @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, downloadedAt]) // For "how many downloads in last 24 h?" queries
+  @@index([videoId])
+  @@map("downloads")
+}
+
+// ------------------------------------------------------------
+// Subscription
+// Tracks the complete lifecycle of a plan purchase.
+// Razorpay fields are nullable until payment integration (Phase N).
+// ------------------------------------------------------------
+model Subscription {
+  id                  String        @id @default(cuid())
+  userId              String
+  planType            PlanType
+  razorpayOrderId     String?       @unique  // Set when order is created
+  razorpayPaymentId   String?       @unique  // Set on successful payment
+  razorpaySignature   String?                // HMAC signature for verification
+  amount              Int                    // In paise (₹1 = 100 paise)
+  status              PaymentStatus @default(PENDING)
+  startDate           DateTime?
+  endDate             DateTime?
+  createdAt           DateTime      @default(now())
+
+  user                User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, status])
+  @@index([status])
+  @@map("subscriptions")
+}
+
+// ------------------------------------------------------------
+// Comment
+// A user's text comment on a video.
+// Supports multilingual content with optional translation.
+// Built-in moderation fields for AI and admin workflows.
+// ------------------------------------------------------------
+model Comment {
+  id               String       @id @default(cuid())
+  userId           String
+  videoId          String
+  text             String       // Original comment text
+  language         String?      // Detected language code (e.g. "en", "hi")
+  translatedText   String?      // AI-translated version (populated on demand)
+  locationRegion   String?      // Broad region of commenter — never exact
+  isFlagged        Boolean      @default(false) // Set by toxicity/spam AI
+  moderationReason String?      // Why the AI flagged it
+  reportStatus     ReportStatus @default(NONE)
+  likes            Int          @default(0)
+  dislikes         Int          @default(0)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  video            Video        @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  reports          CommentReport[]
+
+  @@index([videoId])
+  @@index([userId])
+  @@index([videoId, createdAt])  // For paginated comment feeds
+  @@index([reportStatus])        // For admin moderation queue
+  @@map("comments")
+}
+
+// ------------------------------------------------------------
+// CommentReport
+// A user-submitted report against a comment.
+// Filing a report moves the comment to PENDING_REVIEW status.
+// The comment is NOT automatically deleted — admin reviews it.
+// ------------------------------------------------------------
+model CommentReport {
+  id        String       @id @default(cuid())
+  commentId String
+  userId    String       // The user who filed the report
+  reason    String       // Reported reason: spam, hate speech, etc.
+  status    ReportStatus @default(PENDING_REVIEW)
+  createdAt DateTime     @default(now())
+
+  comment   Comment      @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([commentId, userId])  // A user can only report a comment once
+  @@index([commentId])
+  @@index([userId])
+  @@index([status])              // For admin moderation queue
+  @@map("comment_reports")
+}
+
+// ------------------------------------------------------------
+// WatchParty
+// A synchronised viewing session for a group of users.
+// One user is the host; others join as participants.
+// Supports optional recording of the session.
+// ------------------------------------------------------------
+model WatchParty {
+  id               String          @id @default(cuid())
+  hostId           String
+  roomId           String          @unique  // Public-facing room code (e.g. nanoid)
+  videoId          String
+  recordingEnabled Boolean         @default(false)
+  recordingStatus  RecordingStatus @default(IDLE)
+  createdAt        DateTime        @default(now())
+  endedAt          DateTime?       // Null until the host ends the party
+
+  host             User            @relation("WatchPartyHost", fields: [hostId], references: [id], onDelete: Cascade)
+  video            Video           @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  participants     WatchPartyParticipant[]
+
+  @@index([hostId])
+  @@index([videoId])
+  @@index([roomId])
+  @@map("watch_parties")
+}
+
+// ------------------------------------------------------------
+// WatchPartyParticipant
+// Junction table tracking who joined a party and when.
+// leftAt is null while the participant is still in the room.
+// ------------------------------------------------------------
+model WatchPartyParticipant {
+  id       String     @id @default(cuid())
+  partyId  String
+  userId   String
+  joinedAt DateTime   @default(now())
+  leftAt   DateTime?  // Populated when the user leaves / disconnects
+
+  party    WatchParty @relation(fields: [partyId], references: [id], onDelete: Cascade)
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([partyId, userId])  // A user can only appear once per party
+  @@index([partyId])
+  @@index([userId])
+  @@map("watch_party_participants")
+}

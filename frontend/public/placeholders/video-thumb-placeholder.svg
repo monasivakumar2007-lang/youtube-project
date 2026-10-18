@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181824"/>
+      <stop offset="100%" stop-color="#28283c"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#grad)"/>
+  <circle cx="320" cy="170" r="44" fill="#5271f5" opacity="0.85"/>
+  <polygon points="312,152 338,170 312,188" fill="#ffffff"/>
+  <text x="320" y="240" fill="#a0a0c0" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500" text-anchor="middle">StreamVault Video</text>
+</svg>

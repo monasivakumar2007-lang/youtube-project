@@ -1,0 +1,25 @@
+{
+  "name": "you-tube-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Modern video streaming and social platform — monorepo root",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev": "npx concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "prisma:generate": "node node_modules/prisma/build/index.js generate --schema=./prisma/schema.prisma",
+    "prisma:migrate": "node backend/node_modules/prisma/build/index.js migrate dev --schema=./prisma/schema.prisma",
+    "prisma:studio": "node backend/node_modules/prisma/build/index.js studio --schema=./prisma/schema.prisma"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "prisma": "^5.22.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0"
+  }
+}

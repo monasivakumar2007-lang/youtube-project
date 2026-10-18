@@ -1,0 +1,723 @@
+{
+  "users": [
+    {
+      "id": "user_admin_001",
+      "name": "Admin User",
+      "email": "admin@streamvault.com",
+      "phone": "+91 9876543210",
+      "password": "$2a$10$zNyDxuwQDUa7Y7.CMr9E/umQExAaK8isOoVWpnyzw2l2CMkfmGHKe",
+      "role": "ADMIN",
+      "planType": "GOLD",
+      "themePreference": "DARK",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "updatedAt": "2026-10-18T08:32:52.799Z"
+    },
+    {
+      "id": "user_free_002",
+      "name": "Alex Rivera",
+      "email": "alex@example.com",
+      "phone": "+91 9876543211",
+      "password": "$2a$10$4Br0qQ6fOxjDCSuZajmrAu2cEhSTE0MKsAGfWsSYH97AIoONZDBRm",
+      "role": "USER",
+      "planType": "GOLD",
+      "themePreference": "LIGHT",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-10-18T13:20:38.394Z"
+    },
+    {
+      "id": "user_bronze_003",
+      "name": "Sarah Chen",
+      "email": "sarah@example.com",
+      "phone": "+91 9876543212",
+      "password": "$2a$10$4Br0qQ6fOxjDCSuZajmrAu2cEhSTE0MKsAGfWsSYH97AIoONZDBRm",
+      "role": "USER",
+      "planType": "BRONZE",
+      "themePreference": "DARK",
+      "createdAt": "2026-02-01T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "user_mvdub2np_thxk4j5",
+      "name": "vishnu",
+      "email": "vishnusree2006@gmail.com",
+      "password": "$2a$12$Gg4zfF.ZVLT5uVA.aaD15uMWz7GSsJGF8gcCJn9ReajH8X1C8clH6",
+      "role": "USER",
+      "planType": "FREE",
+      "createdAt": "2026-10-18T13:07:07.957Z",
+      "updatedAt": "2026-10-18T13:07:07.957Z"
+    },
+    {
+      "id": "user_mvdue1k1_zcliogl",
+      "name": "Mona",
+      "email": "monasivakumar2007@gmail.com",
+      "password": "$2a$12$hQjNzdi5QW37EO4OIFYOjue.S0zMrkz420RKJPSBSK9mdgSNphXfu",
+      "role": "USER",
+      "planType": "FREE",
+      "createdAt": "2026-10-18T13:09:26.497Z",
+      "updatedAt": "2026-10-18T13:09:26.497Z"
+    }
+  ],
+  "loginHistories": [
+    {
+      "id": "lh_001",
+      "userId": "user_admin_001",
+      "cityRegion": "Mumbai, India",
+      "state": "Maharashtra",
+      "deviceId": "dev_mumbai_desktop",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "[Desktop | Chrome | Windows] Mozilla/5.0 Chrome/120",
+      "verified": true,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "lh_mvdjsu00_7l5y19z",
+      "userId": "user_free_002",
+      "deviceId": "bbef8f29c287791b0a100baab3e54925",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Unknown Browser | Unknown OS] node",
+      "verified": true,
+      "createdAt": "2026-10-18T08:13:00.768Z",
+      "updatedAt": "2026-10-18T08:13:00.768Z"
+    },
+    {
+      "id": "lh_mvdki6nh_rdsdds0",
+      "userId": "user_admin_001",
+      "deviceId": "edffdd481e15ed17763dc918f30b1165",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Edge | Windows] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "verified": true,
+      "createdAt": "2026-10-18T08:32:43.565Z",
+      "updatedAt": "2026-10-18T08:32:43.565Z"
+    },
+    {
+      "id": "lh_mvdtogff_p1a1usw",
+      "userId": "user_free_002",
+      "deviceId": "bbef8f29c287791b0a100baab3e54925",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Unknown Browser | Unknown OS] node",
+      "verified": true,
+      "createdAt": "2026-10-18T12:49:32.715Z",
+      "updatedAt": "2026-10-18T12:49:32.715Z"
+    },
+    {
+      "id": "lh_mvdu6dcn_rgdkfh0",
+      "userId": "user_free_002",
+      "deviceId": "bbef8f29c287791b0a100baab3e54925",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Unknown Browser | Unknown OS] node",
+      "verified": true,
+      "createdAt": "2026-10-18T13:03:28.535Z",
+      "updatedAt": "2026-10-18T13:03:28.535Z"
+    },
+    {
+      "id": "lh_mvdua124_tk12ymv",
+      "userId": "user_free_002",
+      "deviceId": "edffdd481e15ed17763dc918f30b1165",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Edge | Windows] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "verified": true,
+      "createdAt": "2026-10-18T13:06:19.228Z",
+      "updatedAt": "2026-10-18T13:06:19.228Z"
+    },
+    {
+      "id": "lh_mvdusfwi_85ci1pc",
+      "userId": "user_free_002",
+      "deviceId": "bbef8f29c287791b0a100baab3e54925",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Unknown Browser | Unknown OS] node",
+      "verified": true,
+      "createdAt": "2026-10-18T13:20:38.275Z",
+      "updatedAt": "2026-10-18T13:20:38.275Z"
+    },
+    {
+      "id": "lh_mvduwbtx_oqfmlyy",
+      "userId": "user_mvdue1k1_zcliogl",
+      "deviceId": "edffdd481e15ed17763dc918f30b1165",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Edge | Windows] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "verified": false,
+      "createdAt": "2026-10-18T13:23:39.621Z",
+      "updatedAt": "2026-10-18T13:23:39.621Z"
+    },
+    {
+      "id": "lh_mvduwdnq_vsrn8be",
+      "userId": "user_mvdue1k1_zcliogl",
+      "deviceId": "edffdd481e15ed17763dc918f30b1165",
+      "cityRegion": "Unknown",
+      "state": "Unknown",
+      "ipAddress": "::1",
+      "userAgent": "[Desktop | Edge | Windows] Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+      "verified": false,
+      "createdAt": "2026-10-18T13:23:41.990Z",
+      "updatedAt": "2026-10-18T13:23:41.990Z"
+    }
+  ],
+  "otpRecords": [
+    {
+      "id": "otp_001",
+      "userId": "user_free_002",
+      "otpHash": "$2a$10$wfNZjjCHbcIQUM5aRPN4qu0K74wMn5Lm4Iz5V1pQSZwwbDyU/5tNi",
+      "expiresAt": "2026-10-19T06:44:20.178Z",
+      "attempts": 0,
+      "verified": true,
+      "createdAt": "2026-01-15T00:00:00.000Z"
+    },
+    {
+      "id": "otp_mvdjstxh_6cjsu1k",
+      "userId": "user_free_002",
+      "otpHash": "$2a$10$aybF1fj/KeDXUahLsUApFeEK4kKjb45lqWsGsJbT.ABK/2moV3Pmq",
+      "expiresAt": "2026-10-18T08:18:00.677Z",
+      "attempts": 0,
+      "verified": true,
+      "createdAt": "2026-10-18T08:13:00.677Z",
+      "updatedAt": "2026-10-18T08:13:00.767Z"
+    },
+    {
+      "id": "otp_mvdki3fi_y66obxk",
+      "userId": "user_admin_001",
+      "otpHash": "$2a$10$TMTbUxXLH8G4iTf4Um/0xOeCk52ox3zNM6WcPm.ewVCGSEQ6Kk8X6",
+      "expiresAt": "2026-10-18T08:37:39.390Z",
+      "attempts": 0,
+      "verified": true,
+      "createdAt": "2026-10-18T08:32:39.390Z",
+      "updatedAt": "2026-10-18T08:32:43.563Z"
+    },
+    {
+      "id": "otp_mvdub2r9_9pdxyqc",
+      "userId": "user_mvdub2np_thxk4j5",
+      "otpHash": "$2a$10$E5CsCZ/kG5f52JyzwxTi8ODiGVYVLIaVi6p2NBIOi7d0Xae3cD7Yi",
+      "expiresAt": "2026-10-18T13:12:08.085Z",
+      "attempts": 1,
+      "verified": false,
+      "createdAt": "2026-10-18T13:07:08.085Z",
+      "updatedAt": "2026-10-18T13:07:25.159Z"
+    },
+    {
+      "id": "otp_mvdue1ng_mpa29je",
+      "userId": "user_mvdue1k1_zcliogl",
+      "otpHash": "$2a$10$g6tdJukw6yHQAYD68DDOaexHgMvq.OMtBF1EnnPk7Te4bo3QClLo2",
+      "expiresAt": "2026-10-18T13:14:26.620Z",
+      "attempts": 0,
+      "verified": true,
+      "createdAt": "2026-10-18T13:09:26.620Z",
+      "updatedAt": "2026-10-18T13:10:56.922Z"
+    },
+    {
+      "id": "otp_mvdufzf7_o8385f6",
+      "userId": "user_mvdue1k1_zcliogl",
+      "otpHash": "$2a$10$sqFTqaedJ7cArJueo/IR/uNi6H7urOXl/u/t334IiLDRa7lxVGgJG",
+      "expiresAt": "2026-10-18T13:15:57.043Z",
+      "attempts": 0,
+      "verified": true,
+      "createdAt": "2026-10-18T13:10:57.043Z",
+      "updatedAt": "2026-10-18T13:22:12.262Z"
+    },
+    {
+      "id": "otp_mvdus45i_nr3b1yv",
+      "userId": "user_free_002",
+      "otpHash": "$2a$10$p/eHgbq.OTfQ5BFMEEV5iuzrG943fa0P3mz1xw.gSjgT/EolkpBZq",
+      "expiresAt": "2026-10-18T13:25:23.046Z",
+      "attempts": 0,
+      "verified": false,
+      "createdAt": "2026-10-18T13:20:23.046Z",
+      "updatedAt": "2026-10-18T13:20:23.046Z"
+    },
+    {
+      "id": "otp_mvduugio_80vcxx6",
+      "userId": "user_mvdue1k1_zcliogl",
+      "otpHash": "$2a$10$1Hs6iWNCCsXU2gK/nvrzxOCVJ/VVgT2nXH0052whB3G4wNpwN/xay",
+      "expiresAt": "2026-10-18T13:27:12.384Z",
+      "attempts": 0,
+      "verified": false,
+      "createdAt": "2026-10-18T13:22:12.384Z",
+      "updatedAt": "2026-10-18T13:22:12.384Z"
+    }
+  ],
+  "videos": [
+    {
+      "id": "vid_001",
+      "title": "Big Buck Bunny — Open Source 4K CGI Animation",
+      "description": "A large and lovable rabbit deals with bullying forest creatures in this iconic open-source animated film by the Blender Institute. Showcases rich color palettes, 60fps CGI rendering, and dynamic sound design.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=80",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "duration": 596,
+      "category": "Animation",
+      "views": 14250,
+      "isPublished": true,
+      "status": "READY",
+      "uploadedById": "user_admin_001",
+      "createdAt": "2026-10-11T06:44:20.098Z",
+      "updatedAt": "2026-10-11T06:44:20.098Z"
+    },
+    {
+      "id": "vid_002",
+      "title": "Tears of Steel — Sci-Fi Visual Effects & Robotics",
+      "description": "Set in a dystopian future Amsterdam, a group of scientists and warriors explore robot uprisings, time manipulation, and cutting-edge VFX. A cinematic open-movie masterpiece.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+      "duration": 734,
+      "category": "Sci-Fi",
+      "views": 9820,
+      "isPublished": true,
+      "status": "READY",
+      "uploadedById": "user_admin_001",
+      "createdAt": "2026-10-13T06:44:20.098Z",
+      "updatedAt": "2026-10-13T06:44:20.098Z"
+    },
+    {
+      "id": "vid_003",
+      "title": "Elephants Dream — Surreal Cybernetic Journey",
+      "description": "Proog and Emo guide you through the strange, mechanical labyrinth of an infinite machine. The world first open-movie created entirely with open-source 3D tools.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "duration": 653,
+      "category": "Animation",
+      "views": 6410,
+      "isPublished": true,
+      "status": "READY",
+      "uploadedById": "user_admin_001",
+      "createdAt": "2026-10-14T06:44:20.098Z",
+      "updatedAt": "2026-10-14T06:44:20.098Z"
+    },
+    {
+      "id": "vid_004",
+      "title": "For Bigger Blazes — Ultra HD Action Sports & Adventure",
+      "description": "Experience heart-pounding off-road adventures, extreme mountain sports, and cinematic nature landscapes captured in pristine high-definition video.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=800&auto=format&fit=crop&q=80",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "duration": 15,
+      "category": "Adventure",
+      "views": 18900,
+      "isPublished": true,
+      "status": "READY",
+      "uploadedById": "user_admin_001",
+      "createdAt": "2026-10-15T06:44:20.098Z",
+      "updatedAt": "2026-10-15T06:44:20.098Z"
+    },
+    {
+      "id": "vid_005",
+      "title": "For Bigger Escape — Mountain Serenity & Nature Symphony",
+      "description": "Escape the daily hustle with sweeping aerial vistas of snow-capped alpine peaks, crystal-clear glacial streams, and tranquil wilderness sanctuaries.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop&q=80",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "duration": 15,
+      "category": "Nature",
+      "views": 12400,
+      "isPublished": true,
+      "status": "READY",
+      "uploadedById": "user_admin_001",
+      "createdAt": "2026-10-16T06:44:20.098Z",
+      "updatedAt": "2026-10-16T06:44:20.098Z"
+    },
+    {
+      "id": "vid_006",
+      "title": "We Are Going On Bullrun — High Speed Automotive Showcase",
+      "description": "Supercars, engine roar, and open highway road trips. Follow luxury sports cars across cross-country rally tracks with cinematic slow-motion cinematography.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80",
+      "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      "duration": 47,
+      "category": "Automotive",
+      "views": 22100,
+      "isPublished": true,
+      "status": "READY",
+      "uploadedById": "user_admin_001",
+      "createdAt": "2026-10-17T06:44:20.098Z",
+      "updatedAt": "2026-10-17T06:44:20.098Z"
+    }
+  ],
+  "downloads": [
+    {
+      "id": "dl_mvdjsu1t_z854iql",
+      "userId": "user_free_002",
+      "videoId": "vid_001",
+      "planType": "FREE",
+      "downloadedAt": "2026-10-18T08:13:00.833Z",
+      "createdAt": "2026-10-18T08:13:00.833Z",
+      "updatedAt": "2026-10-18T08:13:00.833Z"
+    },
+    {
+      "id": "dl_mvdjsu4s_sxcf07f",
+      "userId": "user_free_002",
+      "videoId": "vid_002",
+      "planType": "GOLD",
+      "downloadedAt": "2026-10-18T08:13:00.940Z",
+      "createdAt": "2026-10-18T08:13:00.940Z",
+      "updatedAt": "2026-10-18T08:13:00.940Z"
+    },
+    {
+      "id": "dl_mvdtoggu_lqcnrqt",
+      "userId": "user_free_002",
+      "videoId": "vid_001",
+      "planType": "GOLD",
+      "downloadedAt": "2026-10-18T12:49:32.766Z",
+      "createdAt": "2026-10-18T12:49:32.766Z",
+      "updatedAt": "2026-10-18T12:49:32.766Z"
+    },
+    {
+      "id": "dl_mvdtogh0_643z7o4",
+      "userId": "user_free_002",
+      "videoId": "vid_002",
+      "planType": "GOLD",
+      "downloadedAt": "2026-10-18T12:49:32.772Z",
+      "createdAt": "2026-10-18T12:49:32.772Z",
+      "updatedAt": "2026-10-18T12:49:32.772Z"
+    },
+    {
+      "id": "dl_mvdtogj7_ybkwb0n",
+      "userId": "user_free_002",
+      "videoId": "vid_002",
+      "planType": "GOLD",
+      "downloadedAt": "2026-10-18T12:49:32.851Z",
+      "createdAt": "2026-10-18T12:49:32.851Z",
+      "updatedAt": "2026-10-18T12:49:32.851Z"
+    },
+    {
+      "id": "dl_mvdu6dgm_hoh2u61",
+      "userId": "user_free_002",
+      "videoId": "vid_002",
+      "planType": "GOLD",
+      "downloadedAt": "2026-10-18T13:03:28.678Z",
+      "createdAt": "2026-10-18T13:03:28.678Z",
+      "updatedAt": "2026-10-18T13:03:28.678Z"
+    },
+    {
+      "id": "dl_mvdusg0j_rb69e8v",
+      "userId": "user_free_002",
+      "videoId": "vid_002",
+      "planType": "GOLD",
+      "downloadedAt": "2026-10-18T13:20:38.419Z",
+      "createdAt": "2026-10-18T13:20:38.419Z",
+      "updatedAt": "2026-10-18T13:20:38.419Z"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "sub_mvdjsu34_njr1kya",
+      "userId": "user_free_002",
+      "planType": "GOLD",
+      "razorpayOrderId": "order_1792311180880_mwwb0k",
+      "amount": 99900,
+      "status": "SUCCESS",
+      "createdAt": "2026-10-18T08:13:00.880Z",
+      "updatedAt": "2026-10-18T08:13:00.896Z",
+      "razorpayPaymentId": "pay_test_1792311180883",
+      "razorpaySignature": "demo_sig_1792311180883",
+      "startDate": "2026-10-18T08:13:00.895Z",
+      "endDate": "2026-11-17T08:13:00.895Z"
+    },
+    {
+      "id": "sub_mvdtoghp_zr2667x",
+      "userId": "user_free_002",
+      "planType": "GOLD",
+      "razorpayOrderId": "order_1792327772797_wdbf1n",
+      "amount": 99900,
+      "status": "SUCCESS",
+      "createdAt": "2026-10-18T12:49:32.797Z",
+      "updatedAt": "2026-10-18T12:49:32.807Z",
+      "razorpayPaymentId": "pay_test_1792327772800",
+      "razorpaySignature": "demo_sig_1792327772800",
+      "startDate": "2026-10-18T12:49:32.805Z",
+      "endDate": "2026-11-17T12:49:32.805Z"
+    },
+    {
+      "id": "sub_mvdu6dfd_5y6aezb",
+      "userId": "user_free_002",
+      "planType": "GOLD",
+      "razorpayOrderId": "order_1792328608633_hgpk67",
+      "amount": 99900,
+      "status": "SUCCESS",
+      "createdAt": "2026-10-18T13:03:28.633Z",
+      "updatedAt": "2026-10-18T13:03:28.649Z",
+      "razorpayPaymentId": "pay_test_1792328608636",
+      "razorpaySignature": "demo_sig_1792328608636",
+      "startDate": "2026-10-18T13:03:28.648Z",
+      "endDate": "2026-11-17T13:03:28.648Z"
+    },
+    {
+      "id": "sub_mvdusfzp_6vl3p5u",
+      "userId": "user_free_002",
+      "planType": "GOLD",
+      "razorpayOrderId": "order_1792329638389_k712c1",
+      "amount": 99900,
+      "status": "SUCCESS",
+      "createdAt": "2026-10-18T13:20:38.389Z",
+      "updatedAt": "2026-10-18T13:20:38.395Z",
+      "razorpayPaymentId": "pay_test_1792329638392",
+      "razorpaySignature": "demo_sig_1792329638392",
+      "startDate": "2026-10-18T13:20:38.394Z",
+      "endDate": "2026-11-17T13:20:38.394Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "comm_001",
+      "userId": "user_bronze_003",
+      "videoId": "vid_001",
+      "text": "The animation quality in this 4K render is breathtaking! Love the color grading.",
+      "language": "en",
+      "translatedText": null,
+      "locationRegion": "Maharashtra, India",
+      "isFlagged": false,
+      "moderationReason": null,
+      "reportStatus": "NONE",
+      "likes": 14,
+      "dislikes": 1,
+      "createdAt": "2026-10-16T06:44:20.098Z",
+      "updatedAt": "2026-10-16T06:44:20.098Z"
+    },
+    {
+      "id": "comm_002",
+      "userId": "user_free_002",
+      "videoId": "vid_001",
+      "text": "यह वीडियो बहुत ही शानदार और मनोरंजक है! ऑडियो और वीएफएक्स कमाल के हैं।",
+      "language": "hi",
+      "translatedText": "This video is very wonderful and entertaining! The audio and VFX are amazing.",
+      "locationRegion": "Delhi Region, India",
+      "isFlagged": false,
+      "moderationReason": null,
+      "reportStatus": "NONE",
+      "likes": 21,
+      "dislikes": 0,
+      "createdAt": "2026-10-17T06:44:20.098Z",
+      "updatedAt": "2026-10-17T06:44:20.098Z"
+    },
+    {
+      "id": "comm_003",
+      "userId": "user_admin_001",
+      "videoId": "vid_001",
+      "text": "¡Increíble trabajo! El equipo de animación de código abierto ha hecho un trabajo fenomenal.",
+      "language": "es",
+      "translatedText": "Incredible work! The open-source animation team has done a phenomenal job.",
+      "locationRegion": null,
+      "isFlagged": false,
+      "moderationReason": null,
+      "reportStatus": "NONE",
+      "likes": 9,
+      "dislikes": 0,
+      "createdAt": "2026-10-17T18:44:20.098Z",
+      "updatedAt": "2026-10-17T18:44:20.098Z"
+    },
+    {
+      "id": "comm_mvdjsu59_ahfmoen",
+      "userId": "user_free_002",
+      "videoId": "vid_001",
+      "text": "यह बहुत ही अद्भुत और सुंदर वीडियो है! धन्यवाद।",
+      "language": "hi",
+      "locationRegion": "India",
+      "isFlagged": true,
+      "reportStatus": "PENDING_REVIEW",
+      "likes": 1,
+      "dislikes": 1,
+      "createdAt": "2026-10-18T08:13:00.957Z",
+      "updatedAt": "2026-10-18T08:13:10.068Z",
+      "moderationReason": "Needs review"
+    },
+    {
+      "id": "comm_mvdkiy4v_zrhqbpq",
+      "userId": "user_admin_001",
+      "videoId": "vid_006",
+      "text": "super",
+      "language": "en",
+      "locationRegion": null,
+      "isFlagged": false,
+      "reportStatus": "NONE",
+      "likes": 0,
+      "dislikes": 0,
+      "createdAt": "2026-10-18T08:33:19.183Z",
+      "updatedAt": "2026-10-18T08:33:19.183Z"
+    },
+    {
+      "id": "comm_mvdtogjq_djsp4nm",
+      "userId": "user_free_002",
+      "videoId": "vid_001",
+      "text": "यह बहुत ही अद्भुत और सुंदर वीडियो है! धन्यवाद।",
+      "language": "hi",
+      "locationRegion": "India",
+      "isFlagged": true,
+      "reportStatus": "PENDING_REVIEW",
+      "likes": 1,
+      "dislikes": 1,
+      "createdAt": "2026-10-18T12:49:32.870Z",
+      "updatedAt": "2026-10-18T12:49:39.308Z",
+      "moderationReason": "Needs review"
+    },
+    {
+      "id": "comm_mvdu6dh3_qby5u9z",
+      "userId": "user_free_002",
+      "videoId": "vid_001",
+      "text": "यह बहुत ही अद्भुत और सुंदर वीडियो है! धन्यवाद।",
+      "language": "hi",
+      "locationRegion": "India",
+      "isFlagged": true,
+      "reportStatus": "PENDING_REVIEW",
+      "likes": 1,
+      "dislikes": 1,
+      "createdAt": "2026-10-18T13:03:28.695Z",
+      "updatedAt": "2026-10-18T13:03:30.523Z",
+      "moderationReason": "Needs review"
+    },
+    {
+      "id": "comm_mvdusg10_yepoktn",
+      "userId": "user_free_002",
+      "videoId": "vid_001",
+      "text": "यह बहुत ही अद्भुत और सुंदर वीडियो है! धन्यवाद।",
+      "language": "hi",
+      "locationRegion": "India",
+      "isFlagged": true,
+      "reportStatus": "PENDING_REVIEW",
+      "likes": 1,
+      "dislikes": 1,
+      "createdAt": "2026-10-18T13:20:38.436Z",
+      "updatedAt": "2026-10-18T13:20:39.828Z",
+      "moderationReason": "Needs review"
+    }
+  ],
+  "commentReports": [
+    {
+      "id": "cr_mvdjt16b_2vd60a1",
+      "commentId": "comm_mvdjsu59_ahfmoen",
+      "userId": "user_free_002",
+      "reason": "Needs review",
+      "status": "PENDING_REVIEW",
+      "createdAt": "2026-10-18T08:13:10.067Z",
+      "updatedAt": "2026-10-18T08:13:10.067Z"
+    },
+    {
+      "id": "cr_mvdtolij_3kd9r0d",
+      "commentId": "comm_mvdtogjq_djsp4nm",
+      "userId": "user_free_002",
+      "reason": "Needs review",
+      "status": "PENDING_REVIEW",
+      "createdAt": "2026-10-18T12:49:39.307Z",
+      "updatedAt": "2026-10-18T12:49:39.307Z"
+    },
+    {
+      "id": "cr_mvdu6evv_csvx7pr",
+      "commentId": "comm_mvdu6dh3_qby5u9z",
+      "userId": "user_free_002",
+      "reason": "Needs review",
+      "status": "PENDING_REVIEW",
+      "createdAt": "2026-10-18T13:03:30.523Z",
+      "updatedAt": "2026-10-18T13:03:30.523Z"
+    },
+    {
+      "id": "cr_mvdush3n_q105yi1",
+      "commentId": "comm_mvdusg10_yepoktn",
+      "userId": "user_free_002",
+      "reason": "Needs review",
+      "status": "PENDING_REVIEW",
+      "createdAt": "2026-10-18T13:20:39.827Z",
+      "updatedAt": "2026-10-18T13:20:39.827Z"
+    }
+  ],
+  "watchParties": [
+    {
+      "id": "wp_mvdjsu10_nbkobu7",
+      "hostId": "user_free_002",
+      "roomId": "party-TW4W9E",
+      "videoId": "vid_001",
+      "recordingEnabled": true,
+      "recordingStatus": "IDLE",
+      "createdAt": "2026-10-18T08:13:00.804Z",
+      "updatedAt": "2026-10-18T08:13:00.804Z"
+    },
+    {
+      "id": "wp_mvdkj8eu_cmi3x47",
+      "hostId": "user_admin_001",
+      "roomId": "party-L68QSC",
+      "videoId": "vid_006",
+      "recordingEnabled": true,
+      "recordingStatus": "IDLE",
+      "createdAt": "2026-10-18T08:33:32.502Z",
+      "updatedAt": "2026-10-18T08:33:32.502Z"
+    },
+    {
+      "id": "wp_mvdtogg7_m0vlife",
+      "hostId": "user_free_002",
+      "roomId": "party-487WCH",
+      "videoId": "vid_001",
+      "recordingEnabled": true,
+      "recordingStatus": "IDLE",
+      "createdAt": "2026-10-18T12:49:32.743Z",
+      "updatedAt": "2026-10-18T12:49:32.743Z"
+    },
+    {
+      "id": "wp_mvdu6ddb_7397o5r",
+      "hostId": "user_free_002",
+      "roomId": "party-PTZM8B",
+      "videoId": "vid_001",
+      "recordingEnabled": true,
+      "recordingStatus": "IDLE",
+      "createdAt": "2026-10-18T13:03:28.559Z",
+      "updatedAt": "2026-10-18T13:03:28.559Z"
+    },
+    {
+      "id": "wp_mvdusfxk_uophixt",
+      "hostId": "user_free_002",
+      "roomId": "party-MGAVX2",
+      "videoId": "vid_001",
+      "recordingEnabled": true,
+      "recordingStatus": "IDLE",
+      "createdAt": "2026-10-18T13:20:38.312Z",
+      "updatedAt": "2026-10-18T13:20:38.312Z"
+    }
+  ],
+  "watchPartyParticipants": [
+    {
+      "id": "wpp_mvdjsu10_f4m6v54",
+      "partyId": "wp_mvdjsu10_nbkobu7",
+      "userId": "user_free_002",
+      "joinedAt": "2026-10-18T08:13:00.804Z",
+      "createdAt": "2026-10-18T08:13:00.804Z",
+      "updatedAt": "2026-10-18T08:33:33.470Z",
+      "leftAt": null
+    },
+    {
+      "id": "wpp_mvdkj8ew_ylcdwk1",
+      "partyId": "wp_mvdkj8eu_cmi3x47",
+      "userId": "user_admin_001",
+      "joinedAt": "2026-10-18T08:33:32.504Z",
+      "createdAt": "2026-10-18T08:33:32.504Z",
+      "updatedAt": "2026-10-18T08:33:47.033Z",
+      "leftAt": "2026-10-18T08:33:47.033Z"
+    },
+    {
+      "id": "wpp_mvdtogg8_x0ojsgp",
+      "partyId": "wp_mvdtogg7_m0vlife",
+      "userId": "user_free_002",
+      "joinedAt": "2026-10-18T12:49:32.744Z",
+      "createdAt": "2026-10-18T12:49:32.744Z",
+      "updatedAt": "2026-10-18T12:49:32.744Z"
+    },
+    {
+      "id": "wpp_mvdu6ddc_la6looz",
+      "partyId": "wp_mvdu6ddb_7397o5r",
+      "userId": "user_free_002",
+      "joinedAt": "2026-10-18T13:03:28.560Z",
+      "createdAt": "2026-10-18T13:03:28.560Z",
+      "updatedAt": "2026-10-18T13:03:28.560Z"
+    },
+    {
+      "id": "wpp_mvdusfxl_9xlg6ip",
+      "partyId": "wp_mvdusfxk_uophixt",
+      "userId": "user_free_002",
+      "joinedAt": "2026-10-18T13:20:38.313Z",
+      "createdAt": "2026-10-18T13:20:38.313Z",
+      "updatedAt": "2026-10-18T13:20:38.313Z"
+    }
+  ]
+}
