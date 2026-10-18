@@ -55,8 +55,94 @@ export interface VerifyPaymentResponse {
   invoice: InvoiceDetails;
 }
 
+export const DEFAULT_PLANS: PlanItem[] = [
+  {
+    id: 'FREE',
+    name: 'Free',
+    tagline: 'Basic access to video streaming catalog',
+    price: 0,
+    amountInPaise: 0,
+    durationDays: 365,
+    features: [
+      '1 Video Download per 24 hours',
+      'Standard 720p HD Streaming',
+      'Community Live Chat & Comments',
+      'Join Watch Parties (up to 2 participants)',
+    ],
+    downloadsPerDay: '1 / day',
+    streamingQuality: '720p HD',
+    watchPartyLimit: 'Up to 2 friends',
+    hasAdFree: false,
+    hasRecording: false,
+  },
+  {
+    id: 'BRONZE',
+    name: 'Bronze',
+    tagline: 'Ideal for frequent movie and series viewers',
+    price: 99,
+    amountInPaise: 9900,
+    durationDays: 30,
+    features: [
+      '5 Video Downloads per 24 hours',
+      'Full HD 1080p Streaming Quality',
+      'Ad-Free viewing experience',
+      'Host Watch Parties with up to 5 friends',
+    ],
+    downloadsPerDay: '5 / day',
+    streamingQuality: '1080p Full HD',
+    watchPartyLimit: 'Up to 5 friends',
+    hasAdFree: true,
+    hasRecording: false,
+  },
+  {
+    id: 'SILVER',
+    name: 'Silver',
+    tagline: 'Best for movie buffs and power streamers',
+    price: 299,
+    amountInPaise: 29900,
+    durationDays: 30,
+    features: [
+      '15 Video Downloads per 24 hours',
+      'Ultra HD 2K Streaming Quality',
+      'Priority Watch Party rooms (up to 15 friends)',
+      'Host Session Recording (save webm locally)',
+    ],
+    downloadsPerDay: '15 / day',
+    streamingQuality: '2K Ultra HD',
+    watchPartyLimit: 'Up to 15 friends',
+    hasAdFree: true,
+    hasRecording: true,
+  },
+  {
+    id: 'GOLD',
+    name: 'Gold VIP',
+    tagline: 'The ultimate streaming experience with zero limits',
+    price: 599,
+    amountInPaise: 59900,
+    durationDays: 30,
+    features: [
+      'Unlimited Video Downloads (No daily limits)',
+      'Pristine 4K HDR Streaming Quality',
+      'Unlimited Watch Party rooms (up to 50 friends)',
+      'Local Host Session Recording',
+    ],
+    downloadsPerDay: 'Unlimited',
+    streamingQuality: '4K HDR Cinema',
+    watchPartyLimit: 'Up to 50 friends',
+    hasAdFree: true,
+    hasRecording: true,
+  },
+];
+
 export async function getSubscriptionPlans(): Promise<ApiResponse<PlanItem[]>> {
-  return api.get<PlanItem[]>('/api/subscriptions/plans');
+  try {
+    const res = await api.get<PlanItem[]>('/api/subscriptions/plans');
+    if (res.success && res.data && res.data.length > 0) return res;
+  } catch {}
+  return {
+    success: true,
+    data: DEFAULT_PLANS,
+  };
 }
 
 export async function createSubscriptionOrder(planType: string): Promise<ApiResponse<CreateOrderResponse>> {
