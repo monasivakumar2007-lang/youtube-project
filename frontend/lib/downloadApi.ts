@@ -70,7 +70,7 @@ export async function requestVideoDownload(videoId: string): Promise<ApiResponse
         downloadedAt: new Date().toISOString(),
         video: { id: videoId, title: 'Demo Video' } as any,
       },
-      downloadUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      downloadUrl: 'https://media.w3.org/2010/05/bunny/movie.mp4',
       quota: {
         plan: 'FREE',
         dailyLimit: 1,

@@ -386,6 +386,9 @@ export default function WatchPage() {
                         <img
                           src={resolveThumbnailUrl(item.thumbnailUrl)}
                           alt={item.title}
+                          onError={(e) => {
+                            e.currentTarget.src = '/placeholders/video-thumb-placeholder.svg';
+                          }}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                         />
                         {item.duration > 0 && (

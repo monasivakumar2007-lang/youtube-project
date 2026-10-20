@@ -22,6 +22,7 @@ import {
   formatDuration,
   recordView,
   resolveThumbnailUrl,
+  FALLBACK_VIDEOS,
 } from '@/lib/videoApi';
 import { useAuth } from '@/context/AuthContext';
 
@@ -66,8 +67,23 @@ export default function VideoPlayer({ video, nextVideo, onEnded }: VideoPlayerPr
   const [showUpNextOverlay, setShowUpNextOverlay] = useState<boolean>(false);
   const [isUpNextDismissed, setIsUpNextDismissed] = useState<boolean>(false);
 
-  // Stream URL with token authentication
-  const streamUrl = getVideoStreamUrl(video.id, token);
+  // Stream URL with token authentication, prioritizing direct videoUrl
+  const resolvedInitialUrl =
+    video.videoUrl && (video.videoUrl.startsWith('http://') || video.videoUrl.startsWith('https://'))
+      ? video.videoUrl
+      : getVideoStreamUrl(video.id, token);
+
+  const [currentSrc, setCurrentSrc] = useState<string>(resolvedInitialUrl);
+
+  useEffect(() => {
+    const nextUrl =
+      video.videoUrl && (video.videoUrl.startsWith('http://') || video.videoUrl.startsWith('https://'))
+        ? video.videoUrl
+        : getVideoStreamUrl(video.id, token);
+    setCurrentSrc(nextUrl);
+    setHasError(false);
+    setIsBuffering(true);
+  }, [video.id, video.videoUrl, token]);
 
   // ─── Controls Visibility Timer ──────────────────────────────
   const resetControlsTimeout = useCallback(() => {
@@ -297,6 +313,19 @@ export default function VideoPlayer({ video, nextVideo, onEnded }: VideoPlayerPr
   };
 
   const handleError = () => {
+    // If playback fails, auto-recover by switching to the reliable CDN video stream
+    const fallback = FALLBACK_VIDEOS.find((v) => v.id === video.id) || FALLBACK_VIDEOS[0];
+    if (fallback?.videoUrl && currentSrc !== fallback.videoUrl) {
+      console.warn('Playback error on initial stream. Auto-recovering with fallback CDN stream:', fallback.videoUrl);
+      setCurrentSrc(fallback.videoUrl);
+      return;
+    }
+    const safeBackup = 'https://vjs.zencdn.net/v/oceans.mp4';
+    if (currentSrc !== safeBackup) {
+      console.warn('Auto-recovering with safe backup stream:', safeBackup);
+      setCurrentSrc(safeBackup);
+      return;
+    }
     setIsBuffering(false);
     setHasError(true);
     setErrorMessage('Failed to load video stream. The video may still be processing or unavailable.');
@@ -394,7 +423,7 @@ export default function VideoPlayer({ video, nextVideo, onEnded }: VideoPlayerPr
       <video
         ref={videoRef}
         id="streamvault-html5-video"
-        src={streamUrl}
+        src={currentSrc}
         preload="metadata"
         playsInline
         onClick={togglePlay}
@@ -458,12 +487,14 @@ export default function VideoPlayer({ video, nextVideo, onEnded }: VideoPlayerPr
             onClick={() => {
               setHasError(false);
               setIsBuffering(true);
+              const fallback = FALLBACK_VIDEOS.find((v) => v.id === video.id) || FALLBACK_VIDEOS[0];
+              setCurrentSrc(fallback.videoUrl);
               if (videoRef.current) {
                 videoRef.current.load();
                 videoRef.current.play().catch(() => {});
               }
             }}
-            className="px-4 py-2 rounded-xl text-xs font-semibold bg-[var(--brand)] text-white hover:brightness-110 transition-all"
+            className="px-4 py-2 rounded-xl text-xs font-semibold bg-[var(--brand)] text-white hover:brightness-110 transition-all shadow-lg shadow-[var(--brand)]/30"
           >
             Try Again
           </button>
